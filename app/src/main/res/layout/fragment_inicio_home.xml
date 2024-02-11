@@ -4,31 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".inicio_home">
+    tools:context=".inicio_home"
+    android:background="@drawable/fondo_pantalla">
 
     <TextView
         android:id="@+id/titulo_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_width="363dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="168dp"
         android:fontFamily="sans-serif-condensed"
         android:text="Dibujando"
+        android:textAlignment="center"
         android:textSize="89px"
         android:textStyle="bold"
-        android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/botonIrADibujar"
-        android:layout_width="199dp"
-        android:layout_height="51dp"
+        android:layout_width="213dp"
+        android:layout_height="63dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="52dp"
         android:layout_marginEnd="52dp"
+        android:layout_marginBottom="112dp"
+        android:background="@color/naranja"
         android:text="Comenzar a dibujar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="194dp"
+        android:layout_height="271dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/lapiz"
+        app:layout_constraintBottom_toTopOf="@+id/botonIrADibujar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titulo_home" />
+        app:layout_constraintTop_toBottomOf="@+id/titulo_home"
+        app:layout_constraintVertical_bias="0.172" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.pr_tarea4ramosquiranteprudencio;
 
 import androidx.lifecycle.ViewModelProvider;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -40,5 +41,7 @@ public class inicio_home extends Fragment {
                 Navigation.findNavController(v).navigate(R.id.action_inicio_home_to_pizarra);
             }
         });
+
     }
+
 }
