@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,7 @@ public class pizarra extends Fragment {
 
 
     private PizarraViewModel mViewModel;
+    private CanvasPizarra.DrawView drawView;
 
     public static pizarra newInstance() {
         return new pizarra();
@@ -51,6 +53,20 @@ public class pizarra extends Fragment {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_pizarra_to_inicio_home);
+            }
+        });
+
+        FrameLayout lienzo = view.findViewById(R.id.lienzoDrawView);
+        drawView = new CanvasPizarra.DrawView(getContext());
+        lienzo.addView(drawView); // Agregar tu DrawView al lienzo
+
+        //FUNCIONALIDAD BOTÓN BORRAR
+        //Declaramos el botón
+        Button btnBorrar = view.findViewById(R.id.btn_borrar);
+        btnBorrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               drawView.borrarDibujo();
             }
         });
     }
