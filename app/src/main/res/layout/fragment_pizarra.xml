@@ -6,31 +6,119 @@
     android:layout_height="match_parent"
     tools:context=".pizarra">
 
+    <FrameLayout
+        android:id="@+id/lienzoDrawView"
+        android:layout_width="412dp"
+        android:layout_height="530dp"
+        android:layout_gravity="center"
+        android:background="#e0e0e0" />
+
+
+
+    <LinearLayout
+        android:id="@+id/coloresPincelesMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lienzoDrawView">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="73dp"
+            android:layout_height="48dp"
+            android:text="Tipos de pincel"
+            android:textAlignment="center" />
+
+        <RadioGroup
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/pincelRedondo"
+                android:layout_width="97dp"
+                android:layout_height="wrap_content"
+                android:text="Redondo" />
+
+            <RadioButton
+                android:id="@+id/pincelEstrella"
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
+                android:text="Estrella" />
+
+            <RadioButton
+                android:id="@+id/pincelCaraPru"
+                android:layout_width="112dp"
+                android:layout_height="wrap_content"
+                android:text="Cara" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/seleccionPincelesTipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coloresPincelesMenu">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="73dp"
+            android:layout_height="48dp"
+            android:text="Pincel Redondo"
+            android:textAlignment="center" />
+
+        <RadioGroup
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/pincelNegro"
+                android:layout_width="97dp"
+                android:layout_height="wrap_content"
+                android:text="Negro" />
+
+            <RadioButton
+                android:id="@+id/pincelBlanco"
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
+                android:text="Blanco" />
+
+            <RadioButton
+                android:id="@+id/pincelNaranja"
+                android:layout_width="112dp"
+                android:layout_height="wrap_content"
+                android:text="Naranja" />
+        </RadioGroup>
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/btn_volverInicio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="126dp"
+        android:layout_height="58dp"
         android:layout_marginBottom="16dp"
         android:text="Inicio"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_borrar"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.598"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_borrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="72dp"
+        android:layout_width="124dp"
+        android:layout_height="59dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginBottom="16dp"
         android:text="Borrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/lienzoDrawView"
-        android:layout_width="413dp"
-        android:layout_height="505dp"
-        android:layout_gravity="center"
-        android:background="#e0e0e0" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

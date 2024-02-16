@@ -16,15 +16,19 @@ public class CanvasPizarra {
     public static class DrawView extends View {
         private Paint pincelRedondo;
         private List<Point> puntosTocados = new ArrayList<>();
+        private int miColor;
 
         public DrawView(Context context) {
             super(context);
             init();
         }
 
+
         private void init() {
+            miColor = getResources().getColor(R.color.black);
+
             pincelRedondo = new Paint();
-            pincelRedondo.setColor(Color.MAGENTA);
+            pincelRedondo.setColor(miColor);
             pincelRedondo.setStyle(Paint.Style.FILL);
         }
 
