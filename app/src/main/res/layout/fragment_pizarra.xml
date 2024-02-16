@@ -16,7 +16,7 @@
 
 
     <LinearLayout
-        android:id="@+id/coloresPincelesMenu"
+        android:id="@+id/LinLayFormasPincel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -38,6 +38,7 @@
 
             <RadioButton
                 android:id="@+id/pincelRedondo"
+                android:checked="true"
                 android:layout_width="97dp"
                 android:layout_height="wrap_content"
                 android:text="Redondo" />
@@ -63,7 +64,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coloresPincelesMenu">
+        app:layout_constraintTop_toBottomOf="@+id/LinLayFormasPincel">
 
         <TextView
             android:id="@+id/textView"
@@ -73,12 +74,14 @@
             android:textAlignment="center" />
 
         <RadioGroup
+            android:id="@+id/radioGroupColoresPinceles"
             android:layout_width="324dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/pincelNegro"
+                android:checked="true"
                 android:layout_width="97dp"
                 android:layout_height="wrap_content"
                 android:text="Negro" />
