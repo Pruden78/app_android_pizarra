@@ -11,7 +11,7 @@
         android:layout_width="412dp"
         android:layout_height="530dp"
         android:layout_gravity="center"
-        android:background="#e0e0e0" />
+        android:background="@color/white" />
 
 
 
@@ -70,7 +70,7 @@
             android:id="@+id/textView"
             android:layout_width="73dp"
             android:layout_height="48dp"
-            android:text="Pincel Redondo"
+            android:text="Colores"
             android:textAlignment="center" />
 
         <RadioGroup
@@ -87,10 +87,10 @@
                 android:text="Negro" />
 
             <RadioButton
-                android:id="@+id/pincelBlanco"
+                android:id="@+id/pincelAzul"
                 android:layout_width="95dp"
                 android:layout_height="wrap_content"
-                android:text="Blanco" />
+                android:text="Azul" />
 
             <RadioButton
                 android:id="@+id/pincelNaranja"
