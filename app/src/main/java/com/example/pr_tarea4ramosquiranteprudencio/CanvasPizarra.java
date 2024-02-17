@@ -23,26 +23,14 @@ public class CanvasPizarra {
         private List<Point> puntosTocados = new ArrayList<>();
         private int miColor;
         private Path currentPath;
-        private Bitmap starBitmap;
+        private Bitmap estrellaBitmap, caraBitmap;
 
         public DrawView(Context context) {
             super(context);
             init();
         }
-
-        private void init() {
-            miColor = Color.BLACK; // Color inicial del pincel
-            pincelRedondo = new Paint();
-            pincelRedondo.setColor(miColor);
-            pincelRedondo.setStyle(Paint.Style.STROKE);
-            pincelRedondo.setStrokeWidth(20); // Ancho del trazo
-            pincelRedondo.setStrokeJoin(Paint.Join.ROUND); // Bordes redondeados
-            pincelRedondo.setStrokeCap(Paint.Cap.ROUND); // Extremos redondeados
-            starBitmap = getStarBitmap();
-        }
-
         //Inflar el bitmap de la forma de estrella
-        private Bitmap getStarBitmap() {
+        private Bitmap obtenerEstrellaBitmap() {
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.forma_estrella);
             Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
                     drawable.getIntrinsicHeight(),
@@ -53,9 +41,28 @@ public class CanvasPizarra {
             return bitmap;
         }
 
+        //Inflar el bitmap de la forma de cara
+        private Bitmap obtenerCaraBitmap(){
+            Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.micara);
+            Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+                    drawable.getIntrinsicHeight(),
+                    Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
+            return bitmap;
+        }
 
-        public void setTipoPincel(String tipo) {
-            this.tipoPincel = tipo;
+        private void init() {
+            miColor = Color.BLACK; // Color inicial del pincel
+            pincelRedondo = new Paint();
+            pincelRedondo.setColor(miColor);
+            pincelRedondo.setStyle(Paint.Style.STROKE);
+            pincelRedondo.setStrokeWidth(20); // Ancho del trazo
+            pincelRedondo.setStrokeJoin(Paint.Join.ROUND); // Bordes redondeados
+            pincelRedondo.setStrokeCap(Paint.Cap.ROUND); // Extremos redondeados
+            estrellaBitmap = obtenerEstrellaBitmap();
+            caraBitmap = obtenerCaraBitmap();
         }
 
 
@@ -67,17 +74,19 @@ public class CanvasPizarra {
                     // Dibuja trazos para el pincel redondo
                     pincelRedondo.setColor(punto.color);
                     canvas.drawPath(punto.path, pincelRedondo);
-                } else {
+                } else if ("estrella".equals(punto.tipo)){
                     // Dibuja estrellas
-                    float x = punto.x - starBitmap.getWidth() / 2;
-                    float y = punto.y - starBitmap.getHeight() / 2;
-                    canvas.drawBitmap(starBitmap, x, y, null);
+                    float x = punto.x - estrellaBitmap.getWidth() / 2;
+                    float y = punto.y - estrellaBitmap.getHeight() / 2;
+                    canvas.drawBitmap(estrellaBitmap, x, y, null);
+                } else if ("cara".equals(punto.tipo)){
+                    //Dibuja la cara
+                    float x = punto.x - caraBitmap.getWidth() / 2;
+                    float y = punto.y - caraBitmap.getHeight() / 2;
+                    canvas.drawBitmap(caraBitmap, x, y, null);
                 }
             }
         }
-
-
-
 
 
         @Override
@@ -88,8 +97,8 @@ public class CanvasPizarra {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                 case MotionEvent.ACTION_MOVE:
-                    if ("estrella".equals(tipoPincel)) {
-                        puntosTocados.add(new Point((int) x, (int) y, miColor));
+                    if ("estrella".equals(tipoPincel) || "cara".equals(tipoPincel)) {
+                        puntosTocados.add(new Point((int) x, (int) y, miColor, tipoPincel));
                     } else if ("redondo".equals(tipoPincel)) {
                         if (event.getAction() == MotionEvent.ACTION_DOWN) {
                             currentPath = new Path();
@@ -110,6 +119,9 @@ public class CanvasPizarra {
             return true;
         }
 
+        public void setTipoPincel(String tipo) {
+            this.tipoPincel = tipo;
+        }
 
         public void setColorPincel(int color) {
             miColor = color;
@@ -127,15 +139,19 @@ class Point {
     int x, y;
     Path path;
     int color;
+    String tipo; // Agregar esto
 
     Point(Path path, int color) {
         this.path = path;
         this.color = color;
+        this.tipo = "redondo"; // Tipo por defecto
     }
-    Point(int x, int y, int color) {
+
+    Point(int x, int y, int color, String tipo) {
         this.x = x;
         this.y = y;
         this.color = color;
+        this.tipo = tipo;
     }
 }
 

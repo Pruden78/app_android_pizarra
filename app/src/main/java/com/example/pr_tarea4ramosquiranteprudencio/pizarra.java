@@ -54,7 +54,7 @@ public class pizarra extends Fragment {
         //Cargar el canvas con el pincel redondo negro
         FrameLayout lienzo = view.findViewById(R.id.lienzoDrawView);
         drawView = new CanvasPizarra.DrawView(getContext());
-        lienzo.addView(drawView); // Agregar tu DrawView al lienzo
+        lienzo.addView(drawView); // Agregar el DrawView al lienzo
 
 
         //Hacer que se desactive el grupo de colores si seleccionas estrella o cara.
@@ -71,6 +71,7 @@ public class pizarra extends Fragment {
 
                 } else if (botonCara.isChecked()) {
                     coloresPinceles.setVisibility(View.GONE);
+                    drawView.setTipoPincel("cara");
                 } else {
                     coloresPinceles.setVisibility(View.VISIBLE);
                     drawView.setTipoPincel("redondo");
@@ -88,8 +89,8 @@ public class pizarra extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.pincelNegro) {
                     drawView.setColorPincel(ContextCompat.getColor(getContext(), R.color.black));
-                } else if (checkedId == R.id.pincelBlanco) {
-                    drawView.setColorPincel(ContextCompat.getColor(getContext(), R.color.white));
+                } else if (checkedId == R.id.pincelAzul) {
+                    drawView.setColorPincel(ContextCompat.getColor(getContext(), R.color.azul));
                 } else if (checkedId == R.id.pincelNaranja) {
                     drawView.setColorPincel(ContextCompat.getColor(getContext(), R.color.naranja));
                 }
