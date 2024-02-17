@@ -1,5 +1,6 @@
 package com.example.pr_tarea4ramosquiranteprudencio;
 
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -50,7 +51,6 @@ public class pizarra extends Fragment {
         super.onViewCreated(view,savedInstanceState);
 
         //---- CARGAR EL CANVAS Y MARCAR POR DEFECTO EL PINCEL REDONDO Y EL COLOR NEGRO------------
-
         //Cargar el canvas con el pincel redondo negro
         FrameLayout lienzo = view.findViewById(R.id.lienzoDrawView);
         drawView = new CanvasPizarra.DrawView(getContext());
@@ -65,10 +65,15 @@ public class pizarra extends Fragment {
         CompoundButton.OnCheckedChangeListener listener = new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(botonCara.isChecked() || botonEstrella.isChecked()){
+                if(botonEstrella.isChecked()){
+                    coloresPinceles.setVisibility(View.GONE);
+                    drawView.setTipoPincel("estrella");
+
+                } else if (botonCara.isChecked()) {
                     coloresPinceles.setVisibility(View.GONE);
                 } else {
                     coloresPinceles.setVisibility(View.VISIBLE);
+                    drawView.setTipoPincel("redondo");
                 }
             }
         };
@@ -76,9 +81,20 @@ public class pizarra extends Fragment {
         botonCara.setOnCheckedChangeListener(listener);
         botonEstrella.setOnCheckedChangeListener(listener);
 
-
-
-
+        //Cambiar el pincel de color según selección
+        RadioGroup radioGroupColoresPinceles = view.findViewById(R.id.radioGroupColoresPinceles);
+        radioGroupColoresPinceles.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.pincelNegro) {
+                    drawView.setColorPincel(ContextCompat.getColor(getContext(), R.color.black));
+                } else if (checkedId == R.id.pincelBlanco) {
+                    drawView.setColorPincel(ContextCompat.getColor(getContext(), R.color.white));
+                } else if (checkedId == R.id.pincelNaranja) {
+                    drawView.setColorPincel(ContextCompat.getColor(getContext(), R.color.naranja));
+                }
+            }
+        });
 
 
         //------ FUNCIONALIDAD BOTÓN BORRAR -------------
